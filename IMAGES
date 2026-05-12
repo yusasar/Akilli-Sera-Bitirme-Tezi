@@ -1,0 +1,42 @@
+# 🏗️ Sistem Tasarımı, Termodinamik ve Kontrol Mimarisi
+
+Bu belgede, akıllı sera sistemimizin mekanik tasarımı, iklimlendirme (termodinamik) modeli, çoklu bölge (multi-zone) kontrol mantığı ve yapay zeka eğitim sonuçları teknik detaylarıyla açıklanmıştır.
+
+## 1. Termodinamik Hava Akış ve İklimlendirme Modeli
+Sera içerisindeki hava sirkülasyonu, çapraz havalandırma (cross-ventilation) prensibine göre tasarlanmıştır. 
+
+
+
+* **Aktif İklimlendirme:** Çizimde görüldüğü üzere sistem, bir taraftan temiz havayı içeri çekerken (intake), diğer taraftan içerideki ısınmış ve nemli kirli havayı dışarı atmaktadır (exhaust). 
+* **Entegre Isıtma (Rezistans Sistemi):** Temiz hava girişinin olduğu fanların hemen önüne konumlandırılan **Rezistans Sistemi**, dışarıdan alınan soğuk havanın anında ısıtılarak sera içine homojen (eşit) bir şekilde dağılmasını sağlar. Bu sayede bitkilerin soğuk şoku yaşaması engellenir.
+
+---
+
+## 2. Çoklu Bölge (Multi-Zone) Zemin ve Bağımsız Sulama Mimarisi
+Projenin en yenilikçi mühendislik çözümlerinden biri, sera zemininin 4 bağımsız kontrol bölgesine (quadrant) ayrılmış olmasıdır.
+
+![Çoklu Bölge Zemin](Images/coklu_bolge_zemin.png)
+
+* **Polikültür Tarım Altyapısı:** Tek tip bitki yetiştirmek yerine, 4 farklı toprak tipine ve nem/ısı ihtiyacına sahip 4 farklı bitki türü aynı sera içinde eşzamanlı olarak yetiştirilebilir.
+* **Bağımsız Kontrol Döngüsü:** Her bölge kendi kapasitif toprak nem sensörüne sahiptir. Sistem, A bölgesindeki kaktüs için sulama yapmazken, B bölgesindeki yüksek nem isteyen bir bitki için su pompasını otonom olarak devreye sokabilir. Bu mimari, su israfını önler ve maksimum verim sağlar.
+
+---
+
+## 3. Yapay Zeka (CNN/YOLO) Model Eğitim Performansı
+Bitki hastalıklarının otonom tespiti için eğitilen Derin Öğrenme (Deep Learning) modelimizin doğruluk (Accuracy) oranlarını gösteren grafiktir.
+
+![Model Grafiği](Images/ai_model_grafik.png)
+
+* **Eğitim (Train) ve Doğrulama (Validation):** Grafik incelendiğinde, modelin çok kısa bir sürede (Epoch 2 ve sonrasında) Train verisinde %90'ın üzerine, Validation (Doğrulama) verisinde ise %80 seviyelerine ulaştığı görülmektedir.
+* **Sonuç:** Model, aşırı öğrenmeye (overfitting) düşmeden istikrarlı bir şekilde bitki yapraklarındaki sağlıklı/hastalıklı durumları yüksek güvenilirlikle ayırt edebilecek kararlılığa ulaşmıştır.
+
+---
+
+## 4. Prototip Donanım Entegrasyonu (Yapım Aşaması)
+Sistemin kavramsal tasarımdan fiziksel ürüne dönüşüm aşamasını gösteren prototip şasisidir.
+
+![Prototip](Images/prototip_donanim.jpg)
+
+* **Şasi Tasarımı:** Isı yalıtımı ve prototipleme kolaylığı açısından ahşap konstrüksiyon tercih edilmiştir.
+* **Elektronik Yerleşim:** Merkezde Arduino mikrodenetleyicisi, sensör sinyal kabloları (kablo demeti/harness) ve yüksek akımlı aktüatörleri (fanlar, pompa) güvenle sürmek için izoleli röle modülleri konumlandırılmıştır.
+* **Güç Yönetimi:** Sistemin sol üst kısmında, 220V AC şebeke gerilimini donanımlar için güvenli 12V DC gerilime dönüştüren SMPS güç kaynağı (Power Supply) görülmektedir.
